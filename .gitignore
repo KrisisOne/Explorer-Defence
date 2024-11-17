@@ -1,0 +1,13 @@
+# Ignorar la carpeta Library
+Library/
+
+# Otras carpetas y archivos que no deberían subirse
+Temp/
+Obj/
+.vscode/
+.idea/
+
+# Archivos de compilación
+*.csproj
+*.unityproj
+*.sln
