@@ -11,3 +11,23 @@ Obj/
 *.csproj
 *.unityproj
 *.sln
+
+El proyecto se centra en el desarrollo de un juego que permita al jugador mejorar sus habilidades a través de un árbol de mejoras y enfrentar distintos tipos de enemigos con una jugabilidad desafiante. Además, el juego incluye un sistema de progreso que se ve reflejado en la subida de dificultad y en la variedad de enemigos que se presentan en cada nivel. Las habilidades se activan con un sistema de "cooldown", lo que obliga al jugador a pensar estratégicamente en el uso de los recursos disponibles.
+
+El proyecto tiene como objetivo crear una experiencia entretenida y desafiante para los jugadores, a la vez que permite explorar conceptos de juego de defensa y progresión de personajes.
+
+Explorer Defence is a 2D defense video game where the protagonist, a collector robot, is deployed on different planets with the goal of gathering resources for humanity, which is on the brink of extinction. The player must keep the robot safe while various alien enemies with unique characteristics try to destroy it. The robot is equipped with a personal defense system, a cannon (blaster), and support from a mothership in orbit.
+
+This project focuses on developing a game that allows the player to improve skills through an upgrade tree and face various types of enemies in challenging gameplay. Additionally, the game features a progression system that reflects increasing difficulty and a variety of enemies in each level. The skills are activated through a "cooldown" system, requiring the player to think strategically about the use of available resources.
+
+The game combines defense mechanics with strategic gameplay. The project's goal is to create an engaging and challenging experience for players, while exploring defense and character progression concepts. Moreover, it is designed as an offline application, meaning no internet connection is required to play.
+
+El proyecto Explorer Defence nace de la idea de crear un videojuego de defensa 2D en el que el protagonista es un robot que viaja a diferentes planetas para recolectar recursos esenciales para salvar a la humanidad. En el juego, el jugador debe proteger al robot de oleadas de alienígenas que intentan destruirlo. El robot tiene un sistema de defensa propio (un cañón o blaster) y también cuenta con la ayuda de una nave nodriza que lo apoya desde el espacio. El objetivo del jugador es defender al robot, mejorar sus habilidades y enfrentarse a enemigos cada vez más fuertes a medida que avanza en los niveles.
+
+La necesidad que busco cubrir con este juego es ofrecer una experiencia divertida, pero también desafiante, donde los jugadores puedan mejorar sus habilidades a través de un sistema de progresión. Muchos juegos de defensa no permiten tanto control sobre cómo el jugador mejora sus habilidades a medida que avanza, y con Explorer Defence quiero ofrecer esa posibilidad de personalización y desafío constante.
+
+Este tipo de juegos suelen ser populares porque tienen un buen equilibrio entre acción y estrategia. Sin embargo, la mayoría de los títulos de defensa no siempre incluyen un sistema de mejoras tan detallado o un desafío progresivo tan interesante. Mi juego quiere aportar algo diferente: ofrecer no solo un sistema de defensa, sino también la posibilidad de mejorar el robot, gestionar recursos y tomar decisiones estratégicas.
+
+El resultado que quiero obtener es un juego divertido y desafiante que enganche a los jugadores. Al final, espero tener un videojuego con niveles en diferentes planetas, enemigos variados, un sistema de mejoras y una interfaz sencilla pero efectiva. También busco que la progresión del personaje sea fluida, y que los jugadores sientan que sus decisiones tienen impacto en la evolución del juego.
+
+El producto final será un juego 2D con distintos niveles y enemigos, con un sistema de mejoras para el robot y su nave nodriza. El jugador tendrá que gestionar recursos, mejorar habilidades y enfrentarse a enemigos con cada vez más poder. Además, quiero que el juego sea accesible y entretenido, permitiendo a los jugadores disfrutar mientras mejoran su robot y superan los niveles.
