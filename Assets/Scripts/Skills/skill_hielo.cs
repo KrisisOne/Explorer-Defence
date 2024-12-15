@@ -1,65 +1,72 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class skill_hielo : MonoBehaviour
+public class HabilidadHielo : MonoBehaviour
 {
     public float duracion = 5f;
-
     public float efectoRalentizacion = 0.5f;
 
     public GameObject botonHabilidad;
+    public LogicaAlienTipo1[] aliens;
 
-    private bool efectoActivo = false;
+    private bool habilidadActiva = false;
 
     public void ActivarHabilidad()
     {
-        if (!efectoActivo)
+        if (!habilidadActiva)
         {
-            StartCoroutine(RalentizarAliens());
+            StartCoroutine(AplicarHabilidadHielo());
         }
     }
 
-    private System.Collections.IEnumerator RalentizarAliens()
-        {
-        efectoActivo = true;
+    private System.Collections.IEnumerator AplicarHabilidadHielo()
+    {
+        habilidadActiva = true;
 
         GameObject[] aliens = GameObject.FindGameObjectsWithTag("Enemigo");
-
         foreach (GameObject alien in aliens)
         {
-            if (alien != null)  
+            LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
+            if (logica != null)
             {
-                LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
-                if (logica != null)
-                {
-                    logica.velocidadDescenso *= efectoRalentizacion;
-                }
+                logica.velocidadDescenso *= efectoRalentizacion;
             }
         }
 
         if (botonHabilidad != null)
         {
-            botonHabilidad.SetActive(false);
+            CambiarTransparenciaBoton(botonHabilidad, 0.5f);
+            botonHabilidad.GetComponent<Button>().interactable = false;
         }
 
         yield return new WaitForSeconds(duracion);
 
         foreach (GameObject alien in aliens)
         {
-            if (alien != null)  
+            LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
+            if (logica != null)
             {
-                LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
-                if (logica != null)
-                {
-                    logica.velocidadDescenso /= efectoRalentizacion;
-                }
+                logica.velocidadDescenso /= efectoRalentizacion;
             }
         }
 
         if (botonHabilidad != null)
         {
-            botonHabilidad.SetActive(true);
+            CambiarTransparenciaBoton(botonHabilidad, 1f);
+            botonHabilidad.GetComponent<Button>().interactable = true;
         }
 
-        efectoActivo = false;
+        habilidadActiva = false;
+    }
+
+    private void CambiarTransparenciaBoton(GameObject boton, float alpha)
+    {
+        Image botonImagen = boton.GetComponent<Image>();
+        if (botonImagen != null)
+        {
+            Color colorActual = botonImagen.color;
+            colorActual.a = alpha;
+            botonImagen.color = colorActual;
+        }
     }
 }

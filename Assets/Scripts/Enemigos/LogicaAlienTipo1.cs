@@ -5,11 +5,14 @@ public class LogicaAlienTipo1 : MonoBehaviour
     public float velocidadDescenso = 1f;
     
     public Transform barrera;
-    public int vida = 300;
+    public int vida = 500;
     public Sprite spriteMuerto;
     private SpriteRenderer spriteRenderer;
     private bool estaMuerto = false;
     public float tiempoMuerte = 2f; 
+    public delegate void BarreraColisionHandler();
+    public event BarreraColisionHandler OnBarreraColision;
+
 
 
     void Start() {
@@ -26,7 +29,11 @@ public class LogicaAlienTipo1 : MonoBehaviour
     
         transform.Translate(Vector2.down * velocidadDescenso * Time.deltaTime);
 
-        if (transform.position.y <= barrera.position.y + 0.46f) {
+        if (barrera != null && transform.position.y <= barrera.position.y + 0.46f) {
+
+    Debug.Log("Alien tocó la barrera.");
+
+            OnBarreraColision?.Invoke();
 
             Destroy(gameObject);
 
@@ -79,6 +86,7 @@ public class LogicaAlienTipo1 : MonoBehaviour
 
     void DestruirAlien() {
 
+        OnBarreraColision = null;
         Destroy(gameObject);
 
     }
