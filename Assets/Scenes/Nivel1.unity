@@ -1381,7 +1381,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 926439033}
         m_TargetAssemblyTypeName: Navegacion, Assembly-CSharp
         m_MethodName: IrAMenu
         m_Mode: 1
@@ -1465,6 +1465,7 @@ GameObject:
   - component: {fileID: 926439027}
   - component: {fileID: 926439031}
   - component: {fileID: 926439032}
+  - component: {fileID: 926439033}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1573,7 +1574,6 @@ MonoBehaviour:
   duracion: 5
   efectoRalentizacion: 0.5
   botonHabilidad: {fileID: 177968982}
-  aliens: []
 --- !u!114 &926439032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,6 +1593,18 @@ MonoBehaviour:
   blaster: {fileID: 714016554}
   disparoPrefab: {fileID: -6315537959076836614, guid: 0cc85f679b698d44891290c873223556, type: 3}
   botonHabilidad: {fileID: 1169634179}
+--- !u!114 &926439033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926439026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3692a38c4eaa954e96c923327b286b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1169634179
 GameObject:
   m_ObjectHideFlags: 0
