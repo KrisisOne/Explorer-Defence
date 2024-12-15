@@ -1,72 +1,65 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HabilidadHielo : MonoBehaviour
+public class skill_hielo : MonoBehaviour
 {
     public float duracion = 5f;
+
     public float efectoRalentizacion = 0.5f;
 
     public GameObject botonHabilidad;
-    public LogicaAlienTipo1[] aliens;
 
-    private bool habilidadActiva = false;
+    private bool efectoActivo = false;
 
     public void ActivarHabilidad()
     {
-        if (!habilidadActiva)
+        if (!efectoActivo)
         {
-            StartCoroutine(AplicarHabilidadHielo());
+            StartCoroutine(RalentizarAliens());
         }
     }
 
-    private System.Collections.IEnumerator AplicarHabilidadHielo()
-    {
-        habilidadActiva = true;
+    private System.Collections.IEnumerator RalentizarAliens()
+        {
+        efectoActivo = true;
 
         GameObject[] aliens = GameObject.FindGameObjectsWithTag("Enemigo");
+
         foreach (GameObject alien in aliens)
         {
-            LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
-            if (logica != null)
+            if (alien != null)  
             {
-                logica.velocidadDescenso *= efectoRalentizacion;
+                LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
+                if (logica != null)
+                {
+                    logica.velocidadDescenso *= efectoRalentizacion;
+                }
             }
         }
 
         if (botonHabilidad != null)
         {
-            CambiarTransparenciaBoton(botonHabilidad, 0.5f);
-            botonHabilidad.GetComponent<Button>().interactable = false;
+            botonHabilidad.SetActive(false);
         }
 
         yield return new WaitForSeconds(duracion);
 
         foreach (GameObject alien in aliens)
         {
-            LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
-            if (logica != null)
+            if (alien != null)  
             {
-                logica.velocidadDescenso /= efectoRalentizacion;
+                LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
+                if (logica != null)
+                {
+                    logica.velocidadDescenso /= efectoRalentizacion;
+                }
             }
         }
 
         if (botonHabilidad != null)
         {
-            CambiarTransparenciaBoton(botonHabilidad, 1f);
-            botonHabilidad.GetComponent<Button>().interactable = true;
+            botonHabilidad.SetActive(true);
         }
 
-        habilidadActiva = false;
-    }
-
-    private void CambiarTransparenciaBoton(GameObject boton, float alpha)
-    {
-        Image botonImagen = boton.GetComponent<Image>();
-        if (botonImagen != null)
-        {
-            Color colorActual = botonImagen.color;
-            colorActual.a = alpha;
-            botonImagen.color = colorActual;
-        }
+        efectoActivo = false;
     }
 }
