@@ -4,7 +4,7 @@ public class Nivel1 : MonoBehaviour
 {
     public GameObject alienPrefab;
     public Transform paredSuperior;
-    public float intervaloGeneracion = 2f;
+    public float intervaloGeneracion = 3f;
     public float rangoHorizontal = 8f;
     public Transform barrera;
 
