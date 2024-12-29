@@ -900,7 +900,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 782759377}
         m_TargetAssemblyTypeName: Navegacion, Assembly-CSharp
-        m_MethodName: IrAModoHistoria
+        m_MethodName: IrANivel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

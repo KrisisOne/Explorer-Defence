@@ -44,23 +44,21 @@ Transform ObtenerEnemigoMasCercano()
     return enemigoMasCercano;
 }
 
-    void Shoot(Transform objetivo)
-    {
-
-        if (cañon != null) {
-
+    void Shoot(Transform objetivo) {
+        if (cañon != null)
+        {
             GameObject proyectil = Instantiate(disparos, cañon.position, Quaternion.identity);
             Rigidbody2D rb = proyectil.GetComponent<Rigidbody2D>();
 
-            if (rb != null && objetivo != null) {
-
+            if (rb != null && objetivo != null)
+            {
                 Vector2 direccion = (objetivo.position - cañon.position).normalized;
 
                 rb.linearVelocity = direccion * 10f;
 
                 float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
+
                 proyectil.transform.rotation = Quaternion.Euler(0, 0, angulo);
-                
             }
         }
     }

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2500155137623711817}
   - component: {fileID: 606687741949804285}
   - component: {fileID: 7444046619684201319}
-  - component: {fileID: 3024523315896360736}
   - component: {fileID: 4435483290703310474}
+  - component: {fileID: 3024523315896360736}
   m_Layer: 0
   m_Name: Alien_tipo_1
   m_TagString: Enemigo
@@ -136,23 +136,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.45, y: 4.54}
   m_EdgeRadius: 0
---- !u!114 &3024523315896360736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2254963297643672870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aca752f11501b543b0a457dfcc97318, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidadDescenso: 0.5
-  barrera: {fileID: 0}
-  vida: 300
-  spriteMuerto: {fileID: -5023749086972863160, guid: 26150e1a362073444aa5fbb250f44cf1, type: 3}
-  tiempoMuerte: 2
 --- !u!95 &4435483290703310474
 Animator:
   serializedVersion: 7
@@ -175,3 +158,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3024523315896360736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2254963297643672870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aca752f11501b543b0a457dfcc97318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadDescenso: 0.5
+  barrera: {fileID: 0}
+  vida: 300
+  spriteMuerto: {fileID: -5023749086972863160, guid: 26150e1a362073444aa5fbb250f44cf1, type: 3}
+  tiempoMuerte: 2
+  valorEter: 10

@@ -1,7 +1,7 @@
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class Nivel1 : MonoBehaviour
 {
@@ -15,9 +15,19 @@ public class Nivel1 : MonoBehaviour
     private int colisionesActuales = 0;
 
     public TextMeshProUGUI mensajeTexto;
+    public TextMeshProUGUI textoTiempo;
+
+    public Image imagenGanar;
+    public Image imagenPerder;
 
     private float tiempoProximoAlien;
     private bool nivelTerminado = false;
+
+    public float tiempoRestante = 60f;
+
+    public GameObject imagenTresVidas;
+    public GameObject imagenDosVidas;
+    public GameObject imagenUnaVida;
 
     void Start()
     {
@@ -32,12 +42,29 @@ public class Nivel1 : MonoBehaviour
         {
             mensajeTexto.text = "";
         }
+
+        if (textoTiempo != null)
+        {
+            ActualizarTextoTiempo();
+        }
+
+        if (imagenGanar != null)
+        {
+            imagenGanar.gameObject.SetActive(false);
+        }
+
+        if (imagenPerder != null)
+        {
+            imagenPerder.gameObject.SetActive(false);
+        }
     }
 
     void Update()
     {
         if (!nivelTerminado)
         {
+            ActualizarTiempo();
+
             if (Time.time >= tiempoProximoAlien)
             {
                 GenerarAlien();
@@ -64,28 +91,101 @@ public class Nivel1 : MonoBehaviour
 
     void AlienTocoBarrera()
     {
+        
         colisionesActuales++;
-        Debug.Log("Colisiones con la barrera: " + colisionesActuales);
+        ActualizarVidas();
 
         if (colisionesActuales >= limiteColisiones)
         {
-            TerminarNivel();
+            PerderNivel();
         }
     }
 
-    void TerminarNivel()
+    private void ActualizarVidas()
     {
-        nivelTerminado = true;
-
-        if (mensajeTexto != null)
+        if (colisionesActuales == 0)
         {
-            mensajeTexto.text = "¡Has perdido! Volviendo al menú...";
+            imagenTresVidas.SetActive(true);
+            imagenDosVidas.SetActive(false);
+            imagenUnaVida.SetActive(false);
         }
-
-        Time.timeScale = 0f;
-
-        StartCoroutine(VolverAlMenu());
+        else if (colisionesActuales == 1)
+        {
+            imagenTresVidas.SetActive(false);
+            imagenDosVidas.SetActive(true);
+            imagenUnaVida.SetActive(false);
+        }
+        else if (colisionesActuales == 2)
+        {
+            imagenTresVidas.SetActive(false);
+            imagenDosVidas.SetActive(false);
+            imagenUnaVida.SetActive(true);
+        }
     }
+
+    void ActualizarTiempo()
+    {
+        if (tiempoRestante > 0)
+        {
+            tiempoRestante -= Time.deltaTime;
+            ActualizarTextoTiempo();
+        }
+        else
+        {
+            tiempoRestante = 0;
+            if (!nivelTerminado)
+            {
+                GanarNivel();
+            }
+        }
+    }
+
+    void ActualizarTextoTiempo()
+    {
+        int minutos = Mathf.FloorToInt(tiempoRestante / 60);
+        int segundos = Mathf.FloorToInt(tiempoRestante % 60);
+        textoTiempo.text = $"{minutos}:{segundos:D2}";
+    }
+
+void GanarNivel()
+{
+    nivelTerminado = true;
+
+    if (mensajeTexto != null)
+    {
+        mensajeTexto.text = "¡Has ganado!";
+    }
+
+    if (imagenGanar != null)
+    {
+        imagenGanar.gameObject.SetActive(true);
+    }
+
+    Time.timeScale = 0f;
+
+    StartCoroutine(VolverAlMenu());
+}
+
+void PerderNivel()
+{
+    Debug.LogError("entro en derrota");
+    nivelTerminado = true;
+
+    if (mensajeTexto != null)
+    {
+        mensajeTexto.text = "¡Has perdido!";
+    }
+
+    if (imagenPerder != null)
+    {
+        imagenPerder.gameObject.SetActive(true);
+    }
+
+    Time.timeScale = 0f;
+
+    StartCoroutine(VolverAlMenu());
+}
+
 
     private System.Collections.IEnumerator VolverAlMenu()
     {

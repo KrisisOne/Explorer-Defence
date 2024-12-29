@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HabilidadMejoraAtaqueCompleta : MonoBehaviour
+public class SkillMunicion : MonoBehaviour
 {
     public float duracion = 5f;
     public float multiplicadorVelocidadAtaque = 1.5f;
