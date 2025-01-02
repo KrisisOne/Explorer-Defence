@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class SkillBomba : MonoBehaviour
 {
-    public int daño = 300;
+    public int daño = 1000;
     public string tagEnemigos = "Enemigo";
     public GameObject efectoExplosion;
     public GameObject botonHabilidad;
@@ -37,11 +37,26 @@ public class SkillBomba : MonoBehaviour
             {
                 LogicaAlienTipo1 logica = enemigo.GetComponent<LogicaAlienTipo1>();
                 LogicaAlienTipo2 logica2 = enemigo.GetComponent<LogicaAlienTipo2>();
+                LogicaAlienTipo3 logica3 = enemigo.GetComponent<LogicaAlienTipo3>();
+                LogicaAlienTipo4 logica4 = enemigo.GetComponent<LogicaAlienTipo4>();
+                
                 if (logica != null)
                 {
                     logica.RecibirDaño(daño);
+                }
+                if (logica2 != null)
+                {
                     logica2.RecibirDaño(daño);
                 }
+                if (logica3 != null)
+                {
+                    logica3.RecibirDaño(daño);
+                }
+                if (logica4 != null)
+                {
+                    logica4.RecibirDaño(daño);
+                }
+
             }
         }
 

@@ -814,7 +814,6 @@ MonoBehaviour:
   rangoHorizontal: 3.5
   barrera: {fileID: 251190920}
   limiteColisiones: 3
-  mensajeTexto: {fileID: 0}
   textoTiempo: {fileID: 977362188}
   imagenGanar: {fileID: 1772266456}
   imagenPerder: {fileID: 1623281772}
@@ -2037,11 +2036,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d29d8d4bd44fe4ea66ff860f41b443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 300
+  "da\xF1o": 999
   tagEnemigos: Enemigo
   efectoExplosion: {fileID: 0}
   botonHabilidad: {fileID: 2063648833}
-  duracion: 120
+  duracion: 999
 --- !u!1 &977362186
 GameObject:
   m_ObjectHideFlags: 0

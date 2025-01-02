@@ -15,8 +15,6 @@ public class Nivel2 : MonoBehaviour
 
     public int limiteColisiones = 3;
     private int colisionesActuales = 0;
-
-    public TextMeshProUGUI mensajeTexto;
     public TextMeshProUGUI textoTiempo;
 
     public Image imagenGanar;
@@ -31,21 +29,14 @@ public class Nivel2 : MonoBehaviour
     public GameObject imagenTresVidas;
     public GameObject imagenDosVidas;
     public GameObject imagenUnaVida;
+    private GestionarEter gestionarEter;
 
     void Start()
     {
-        if (barrera == null)
-        {
-            Debug.LogError("La barrera no está asignada.");
-        }
+        gestionarEter = FindObjectOfType<GestionarEter>();
 
         tiempoProximoAlienTipo1 = Time.time + intervaloGeneracionAlienTipo1;
         tiempoProximoAlienTipo2 = Time.time + intervaloGeneracionAlienTipo2;
-
-        if (mensajeTexto != null)
-        {
-            mensajeTexto.text = "";
-        }
 
         if (textoTiempo != null)
         {
@@ -83,34 +74,35 @@ public class Nivel2 : MonoBehaviour
         }
     }
 
-void GenerarAlien(GameObject alienPrefab)
-{
-    float centroPantalla = Camera.main.transform.position.x;
-    float posicionX = Random.Range(-rangoHorizontal, rangoHorizontal) + centroPantalla;
-    Vector2 posicionAlien = new Vector2(posicionX, paredSuperior.position.y);
-
-    GameObject nuevoAlien = Instantiate(alienPrefab, posicionAlien, Quaternion.identity);
-
-    if (alienPrefab.GetComponent<LogicaAlienTipo1>() != null)
+    void GenerarAlien(GameObject alienPrefab)
     {
-        LogicaAlienTipo1 logicaAlien = nuevoAlien.GetComponent<LogicaAlienTipo1>();
-        if (logicaAlien != null)
+        float centroPantalla = Camera.main.transform.position.x;
+        float posicionX = Random.Range(-rangoHorizontal, rangoHorizontal) + centroPantalla;
+        Vector2 posicionAlien = new Vector2(posicionX, paredSuperior.position.y);
+
+        GameObject nuevoAlien = Instantiate(alienPrefab, posicionAlien, Quaternion.identity);
+
+        if (alienPrefab.GetComponent<LogicaAlienTipo1>() != null)
         {
-            logicaAlien.barrera = barrera;
-            logicaAlien.OnBarreraColision += AlienTocoBarrera;
+            LogicaAlienTipo1 logicaAlien = nuevoAlien.GetComponent<LogicaAlienTipo1>();
+            if (logicaAlien != null)
+            {
+                logicaAlien.barrera = barrera;
+                logicaAlien.vida += 100;
+                logicaAlien.OnBarreraColision += AlienTocoBarrera;
+            }
+        }
+
+        if (alienPrefab.GetComponent<LogicaAlienTipo2>() != null)
+        {
+            LogicaAlienTipo2 logicaAlien = nuevoAlien.GetComponent<LogicaAlienTipo2>();
+            if (logicaAlien != null)
+            {
+                logicaAlien.barrera = barrera;
+                logicaAlien.OnBarreraColision += AlienTocoBarrera;
+            }
         }
     }
-
-    if (alienPrefab.GetComponent<LogicaAlienTipo2>() != null)
-    {
-        LogicaAlienTipo2 logicaAlien = nuevoAlien.GetComponent<LogicaAlienTipo2>();
-        if (logicaAlien != null)
-        {
-            logicaAlien.barrera = barrera;
-            logicaAlien.OnBarreraColision += AlienTocoBarrera;
-        }
-    }
-}
 
 
     void AlienTocoBarrera()
@@ -174,14 +166,13 @@ void GenerarAlien(GameObject alienPrefab)
     {
         nivelTerminado = true;
 
-        if (mensajeTexto != null)
-        {
-            mensajeTexto.text = "¡Has ganado!";
-        }
-
         if (imagenGanar != null)
         {
             imagenGanar.gameObject.SetActive(true);
+        }
+        if (gestionarEter != null)
+        {
+            gestionarEter.SumarEter(200);
         }
 
         Time.timeScale = 0f;
@@ -192,11 +183,6 @@ void GenerarAlien(GameObject alienPrefab)
     void PerderNivel()
     {
         nivelTerminado = true;
-
-        if (mensajeTexto != null)
-        {
-            mensajeTexto.text = "¡Has perdido!";
-        }
 
         if (imagenPerder != null)
         {
@@ -210,7 +196,7 @@ void GenerarAlien(GameObject alienPrefab)
 
     private System.Collections.IEnumerator VolverAlMenu()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(4f);
 
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");

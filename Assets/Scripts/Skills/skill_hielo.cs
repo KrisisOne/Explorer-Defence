@@ -30,6 +30,8 @@ public class SkillHielo : MonoBehaviour
             {
                 LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
                 LogicaAlienTipo2 logicaTipo2 = alien.GetComponent<LogicaAlienTipo2>();
+                LogicaAlienTipo3 logicaTipo3 = alien.GetComponent<LogicaAlienTipo3>();
+                LogicaAlienTipo4 logicaTipo4 = alien.GetComponent<LogicaAlienTipo4>();
                 if (logica != null)
                 {
                     logica.velocidadDescenso *= efectoRalentizacion;
@@ -37,6 +39,14 @@ public class SkillHielo : MonoBehaviour
                 if (logicaTipo2 != null)
                 {
                     logicaTipo2.velocidadDescenso *= efectoRalentizacion;
+                }
+                if (logicaTipo3 != null)
+                {
+                    logicaTipo3.velocidadDescenso *= efectoRalentizacion;
+                }
+                if (logicaTipo4 != null)
+                {
+                    logicaTipo4.velocidadDescenso *= efectoRalentizacion;
                 }
             }
         }
@@ -54,10 +64,27 @@ public class SkillHielo : MonoBehaviour
             if (alien != null)
             {
                 LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
+                LogicaAlienTipo2 logicaTipo2 = alien.GetComponent<LogicaAlienTipo2>();
+                LogicaAlienTipo3 logicaTipo3 = alien.GetComponent<LogicaAlienTipo3>();
+                LogicaAlienTipo4 logicaTipo4 = alien.GetComponent<LogicaAlienTipo4>();
+
                 if (logica != null)
                 {
                     logica.velocidadDescenso /= efectoRalentizacion;
                 }
+                if (logicaTipo2 != null)
+                {
+                    logicaTipo2.velocidadDescenso /= efectoRalentizacion;
+                }
+                if (logicaTipo3 != null)
+                {
+                    logicaTipo3.velocidadDescenso /= efectoRalentizacion;
+                }
+                if (logicaTipo4 != null)
+                {
+                    logicaTipo4.velocidadDescenso /= efectoRalentizacion;
+                }
+
             }
         }
 

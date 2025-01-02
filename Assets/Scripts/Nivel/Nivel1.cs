@@ -14,7 +14,6 @@ public class Nivel1 : MonoBehaviour
     public int limiteColisiones = 3;
     private int colisionesActuales = 0;
 
-    public TextMeshProUGUI mensajeTexto;
     public TextMeshProUGUI textoTiempo;
 
     public Image imagenGanar;
@@ -29,19 +28,13 @@ public class Nivel1 : MonoBehaviour
     public GameObject imagenDosVidas;
     public GameObject imagenUnaVida;
 
+    private GestionarEter gestionarEter;
+
     void Start()
     {
-        if (barrera == null)
-        {
-            Debug.LogError("La barrera no está asignada.");
-        }
+        gestionarEter = FindObjectOfType<GestionarEter>();
 
         tiempoProximoAlien = Time.time + intervaloGeneracion;
-
-        if (mensajeTexto != null)
-        {
-            mensajeTexto.text = "";
-        }
 
         if (textoTiempo != null)
         {
@@ -147,49 +140,45 @@ public class Nivel1 : MonoBehaviour
         textoTiempo.text = $"{minutos}:{segundos:D2}";
     }
 
-void GanarNivel()
-{
-    nivelTerminado = true;
-
-    if (mensajeTexto != null)
+    void GanarNivel()
     {
-        mensajeTexto.text = "¡Has ganado!";
+        nivelTerminado = true;
+
+
+        if (imagenGanar != null)
+        {
+            imagenGanar.gameObject.SetActive(true);
+        }
+
+        if (gestionarEter != null)
+        {
+            gestionarEter.SumarEter(200);
+        }
+
+        Time.timeScale = 0f;
+
+        StartCoroutine(VolverAlMenu());
     }
 
-    if (imagenGanar != null)
+    void PerderNivel()
     {
-        imagenGanar.gameObject.SetActive(true);
+        Debug.LogError("entro en derrota");
+        nivelTerminado = true;
+
+        if (imagenPerder != null)
+        {
+            imagenPerder.gameObject.SetActive(true);
+        }
+
+        Time.timeScale = 0f;
+
+        StartCoroutine(VolverAlMenu());
     }
-
-    Time.timeScale = 0f;
-
-    StartCoroutine(VolverAlMenu());
-}
-
-void PerderNivel()
-{
-    Debug.LogError("entro en derrota");
-    nivelTerminado = true;
-
-    if (mensajeTexto != null)
-    {
-        mensajeTexto.text = "¡Has perdido!";
-    }
-
-    if (imagenPerder != null)
-    {
-        imagenPerder.gameObject.SetActive(true);
-    }
-
-    Time.timeScale = 0f;
-
-    StartCoroutine(VolverAlMenu());
-}
 
 
     private System.Collections.IEnumerator VolverAlMenu()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(4f);
 
         Time.timeScale = 1f; 
         SceneManager.LoadScene("Menu"); 
