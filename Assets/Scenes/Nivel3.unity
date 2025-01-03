@@ -826,7 +826,7 @@ MonoBehaviour:
   alienTipo1Prefab: {fileID: 2254963297643672870, guid: 9667949fa4d55a44dbe1838f06b4f240, type: 3}
   alienTipo2Prefab: {fileID: 2254963297643672870, guid: 039f0b11b9e81424ab97cb2799ac2eec, type: 3}
   paredSuperior: {fileID: 23047822}
-  intervaloGeneracionAlienTipo1: 1
+  intervaloGeneracionAlienTipo1: 1.8
   intervaloGeneracionAlienTipo2: 3.5
   rangoHorizontal: 3.5
   barrera: {fileID: 251190920}

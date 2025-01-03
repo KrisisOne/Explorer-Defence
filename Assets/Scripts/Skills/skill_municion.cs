@@ -5,9 +5,9 @@ public class SkillMunicion : MonoBehaviour
 {
     public float duracionBase = 5f;
     public float cooldownBase = 10f;
-    public float multiplicadorVelocidadAtaqueBase = 1.05f;
+    public float multiplicadorVelocidadAtaqueBase = 1f;
     public float multiplicadorDañoBase = 1.1f;
-    public float multiplicadorVelocidadProyectil = 1.05f;
+    public float multiplicadorVelocidadProyectil = 1f;
 
     public LogicaBlaster blaster;
     public LogicaDisparos disparoPrefab;
@@ -47,7 +47,7 @@ public class SkillMunicion : MonoBehaviour
 
         float duracion = duracionBase + (nivelHabilidad - 1) * 0.5f;
         float cooldown = Mathf.Max(cooldownBase - (nivelHabilidad - 1) * 0.5f, 2f);
-        float multiplicadorVelocidadAtaque = multiplicadorVelocidadAtaqueBase + (nivelHabilidad* 1.05f) ;
+        float multiplicadorVelocidadAtaque = multiplicadorVelocidadAtaqueBase + (nivelHabilidad * 1.00f) ;
         float multiplicadorDaño = multiplicadorDañoBase + (nivelHabilidad - 1) * 1f;
 
         float velocidadAtaqueOriginal = blaster.atkSpeed;

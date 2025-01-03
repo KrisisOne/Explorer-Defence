@@ -5,7 +5,7 @@ public class LogicaBlaster : MonoBehaviour
     public GameObject disparos;
     public Transform cañon;
     public float atkSpeedBase = 1f;
-    public float atkSpeedIncrementoPorNivel = 0.1f;
+    public float atkSpeedIncrementoPorNivel = 0.5f;
     public float cooldownDisparos = 0f;
     public float rangoDeteccion = 10f;
 
