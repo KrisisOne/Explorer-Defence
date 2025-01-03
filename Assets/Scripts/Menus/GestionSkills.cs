@@ -8,11 +8,11 @@ public class GestionSkills : MonoBehaviour
     public int nivelBomba = 1;
     public int nivelAtkSpeed = 1;
     public int nivelDaño = 1;
-    public int costoHielo = 1000;
-    public int costoMunicion = 1500;
-    public int costoBomba = 2000;
-    public int costoAtkSpeed = 1200;
-    public int costoDaño = 1800;
+    public int costoHielo = 200;
+    public int costoMunicion = 300;
+    public int costoBomba = 500;
+    public int costoAtkSpeed = 250;
+    public int costoDaño = 400;
 
     public TextMeshProUGUI textoNivelHielo;
     public TextMeshProUGUI textoNivelMunicion;
@@ -122,18 +122,18 @@ public class GestionSkills : MonoBehaviour
     private void CargarDatos()
     {
         nivelHielo = PlayerPrefs.GetInt("NivelHielo", 1);
-        costoHielo = PlayerPrefs.GetInt("CostoHielo", 1000);
+        costoHielo = PlayerPrefs.GetInt("CostoHielo", 200);
 
         nivelMunicion = PlayerPrefs.GetInt("NivelMunicion", 1);
-        costoMunicion = PlayerPrefs.GetInt("CostoMunicion", 1500);
+        costoMunicion = PlayerPrefs.GetInt("CostoMunicion", 300);
 
         nivelBomba = PlayerPrefs.GetInt("NivelBomba", 1);
-        costoBomba = PlayerPrefs.GetInt("CostoBomba", 2000);
+        costoBomba = PlayerPrefs.GetInt("CostoBomba", 500);
 
         nivelAtkSpeed = PlayerPrefs.GetInt("NivelAtkSpeed", 1);
-        costoAtkSpeed = PlayerPrefs.GetInt("CostoAtkSpeed", 1200);
+        costoAtkSpeed = PlayerPrefs.GetInt("CostoAtkSpeed", 250);
 
         nivelDaño = PlayerPrefs.GetInt("NivelDaño", 1);
-        costoDaño = PlayerPrefs.GetInt("CostoDaño", 1800);
+        costoDaño = PlayerPrefs.GetInt("CostoDaño", 400);
     }
 }

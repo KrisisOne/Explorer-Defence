@@ -3,16 +3,36 @@ using UnityEngine.UI;
 
 public class SkillHielo : MonoBehaviour
 {
-    public float duracion = 5f;
-    public float efectoRalentizacion = 0.5f;
+    public float duracionBase = 5f;
+    public float cooldownBase = 10f;
+    public float efectoRalentizacionBase = 0.9f;
+    public float incrementoPorNivel = 0.25f;
 
     public GameObject botonHabilidad;
 
     private bool efectoActivo = false;
+    private bool enCooldown = false;
+
+    private GestionSkills gestionSkills;
+    private int nivelHabilidad;
+
+    void Start()
+    {
+
+        gestionSkills = FindObjectOfType<GestionSkills>();
+        if (gestionSkills == null)
+        {
+            Debug.LogError("No se encontró el script GestionSkills en la escena.");
+        }
+        else
+        {
+            nivelHabilidad = gestionSkills.nivelHielo;
+        }
+    }
 
     public void ActivarHabilidad()
     {
-        if (!efectoActivo)
+        if (!efectoActivo && !enCooldown)
         {
             StartCoroutine(RalentizarAliens());
         }
@@ -22,32 +42,16 @@ public class SkillHielo : MonoBehaviour
     {
         efectoActivo = true;
 
-        GameObject[] aliens = GameObject.FindGameObjectsWithTag("Enemigo");
+        float duracion = duracionBase;
+        float cooldown = cooldownBase - (nivelHabilidad - 1) * 0.5f;
+        float factorRalentizacion = CalcularFactorRalentizacion(nivelHabilidad);
 
+        GameObject[] aliens = GameObject.FindGameObjectsWithTag("Enemigo");
         foreach (GameObject alien in aliens)
         {
             if (alien != null)
             {
-                LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
-                LogicaAlienTipo2 logicaTipo2 = alien.GetComponent<LogicaAlienTipo2>();
-                LogicaAlienTipo3 logicaTipo3 = alien.GetComponent<LogicaAlienTipo3>();
-                LogicaAlienTipo4 logicaTipo4 = alien.GetComponent<LogicaAlienTipo4>();
-                if (logica != null)
-                {
-                    logica.velocidadDescenso *= efectoRalentizacion;
-                }
-                if (logicaTipo2 != null)
-                {
-                    logicaTipo2.velocidadDescenso *= efectoRalentizacion;
-                }
-                if (logicaTipo3 != null)
-                {
-                    logicaTipo3.velocidadDescenso *= efectoRalentizacion;
-                }
-                if (logicaTipo4 != null)
-                {
-                    logicaTipo4.velocidadDescenso *= efectoRalentizacion;
-                }
+                AplicarEfectoRalentizacion(alien, factorRalentizacion, true);
             }
         }
 
@@ -63,30 +67,40 @@ public class SkillHielo : MonoBehaviour
         {
             if (alien != null)
             {
-                LogicaAlienTipo1 logica = alien.GetComponent<LogicaAlienTipo1>();
-                LogicaAlienTipo2 logicaTipo2 = alien.GetComponent<LogicaAlienTipo2>();
-                LogicaAlienTipo3 logicaTipo3 = alien.GetComponent<LogicaAlienTipo3>();
-                LogicaAlienTipo4 logicaTipo4 = alien.GetComponent<LogicaAlienTipo4>();
-
-                if (logica != null)
-                {
-                    logica.velocidadDescenso /= efectoRalentizacion;
-                }
-                if (logicaTipo2 != null)
-                {
-                    logicaTipo2.velocidadDescenso /= efectoRalentizacion;
-                }
-                if (logicaTipo3 != null)
-                {
-                    logicaTipo3.velocidadDescenso /= efectoRalentizacion;
-                }
-                if (logicaTipo4 != null)
-                {
-                    logicaTipo4.velocidadDescenso /= efectoRalentizacion;
-                }
-
+                AplicarEfectoRalentizacion(alien, factorRalentizacion, false);
             }
         }
+
+        StartCoroutine(CooldownHabilidad(cooldown));
+    }
+
+    private float CalcularFactorRalentizacion(int nivel)
+    {
+        float maxRalentizacion = 0.4f;
+        float minRalentizacion = efectoRalentizacionBase;
+        return Mathf.Max(minRalentizacion - (nivel - 1) * incrementoPorNivel, maxRalentizacion);
+    }
+
+    private void AplicarEfectoRalentizacion(GameObject alien, float factorRalentizacion, bool aplicar)
+    {
+        float factor = aplicar ? factorRalentizacion : 1f / factorRalentizacion;
+
+        LogicaAlienTipo1 logica1 = alien.GetComponent<LogicaAlienTipo1>();
+        LogicaAlienTipo2 logica2 = alien.GetComponent<LogicaAlienTipo2>();
+        LogicaAlienTipo3 logica3 = alien.GetComponent<LogicaAlienTipo3>();
+        LogicaAlienTipo4 logica4 = alien.GetComponent<LogicaAlienTipo4>();
+
+        if (logica1 != null) logica1.velocidadDescenso *= factor;
+        if (logica2 != null) logica2.velocidadDescenso *= factor;
+        if (logica3 != null) logica3.velocidadDescenso *= factor;
+        if (logica4 != null) logica4.velocidadDescenso *= factor;
+    }
+
+    private System.Collections.IEnumerator CooldownHabilidad(float cooldown)
+    {
+        enCooldown = true;
+
+        yield return new WaitForSeconds(cooldown);
 
         if (botonHabilidad != null)
         {
@@ -94,6 +108,7 @@ public class SkillHielo : MonoBehaviour
             CambiaTransparenciaBoton(botonHabilidad, 1f);
         }
 
+        enCooldown = false;
         efectoActivo = false;
     }
 

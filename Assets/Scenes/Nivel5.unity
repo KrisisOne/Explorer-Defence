@@ -828,13 +828,12 @@ MonoBehaviour:
   alienTipo3Prefab: {fileID: 1464757666627666232, guid: 9e5b77bace551c24bb656595a832bf0d, type: 3}
   alienTipo4Prefab: {fileID: 7161328343086887784, guid: be95b6b9fb0091a44bb081400676dae2, type: 3}
   paredSuperior: {fileID: 23047822}
-  intervaloGeneracionAlienTipo1: 2
-  intervaloGeneracionAlienTipo2: 4
-  intervaloGeneracionAlienTipo3: 6
+  intervaloGeneracionAlienTipo1: 1
+  intervaloGeneracionAlienTipo2: 3
+  intervaloGeneracionAlienTipo3: 4.5
   rangoHorizontal: 3.5
   barrera: {fileID: 251190920}
   limiteColisiones: 3
-  mensajeTexto: {fileID: 0}
   textoTiempo: {fileID: 977362188}
   imagenGanar: {fileID: 1772266456}
   imagenPerder: {fileID: 1623281772}
@@ -1471,9 +1470,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disparos: {fileID: 4164818959138241355, guid: 0cc85f679b698d44891290c873223556, type: 3}
   "ca\xF1on": {fileID: 1243697310}
-  atkSpeed: 1
+  atkSpeedBase: 1
+  atkSpeedIncrementoPorNivel: 0.1
   cooldownDisparos: 0
   rangoDeteccion: 19.9
+  atkSpeed: 1
 --- !u!1 &769651567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,8 +1997,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323539e22fb555d40a18654e0cf69de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duracion: 5
-  efectoRalentizacion: 0.5
+  duracionBase: 5
+  cooldownBase: 10
+  efectoRalentizacionBase: 0.5
+  incrementoPorNivel: 0.25
   botonHabilidad: {fileID: 177968982}
 --- !u!114 &926439032
 MonoBehaviour:
@@ -2011,9 +2014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3172644b5ed39834f984bc43f7df8132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duracion: 5
-  multiplicadorVelocidadAtaque: 2
-  "multiplicadorDa\xF1o": 2
+  duracionBase: 5
+  cooldownBase: 10
+  multiplicadorVelocidadAtaqueBase: 1.2
+  "multiplicadorDa\xF1oBase": 1.1
   multiplicadorVelocidadProyectil: 1.5
   blaster: {fileID: 714016554}
   disparoPrefab: {fileID: -6315537959076836614, guid: 0cc85f679b698d44891290c873223556, type: 3}
@@ -2425,6 +2429,70 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 714016553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1377966173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1377966175}
+  - component: {fileID: 1377966174}
+  m_Layer: 0
+  m_Name: GestionSkills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1377966174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377966173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95664acdea7c58642a9c3335ff739ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivelHielo: 1
+  nivelMunicion: 1
+  nivelBomba: 1
+  nivelAtkSpeed: 1
+  "nivelDa\xF1o": 1
+  costoHielo: 1000
+  costoMunicion: 1500
+  costoBomba: 2000
+  costoAtkSpeed: 1200
+  "costoDa\xF1o": 1800
+  textoNivelHielo: {fileID: 0}
+  textoNivelMunicion: {fileID: 0}
+  textoNivelBomba: {fileID: 0}
+  textoNivelAtkSpeed: {fileID: 0}
+  "textoNivelDa\xF1o": {fileID: 0}
+  textoCostoHielo: {fileID: 0}
+  textoCostoMunicion: {fileID: 0}
+  textoCostoBomba: {fileID: 0}
+  textoCostoAtkSpeed: {fileID: 0}
+  "textoCostoDa\xF1o": {fileID: 0}
+--- !u!4 &1377966175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377966173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.864221, y: 2.4921894, z: -0.10507678}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1488448668
 GameObject:
@@ -3222,3 +3290,4 @@ SceneRoots:
   - {fileID: 325153608}
   - {fileID: 926439030}
   - {fileID: 527227281}
+  - {fileID: 1377966175}
